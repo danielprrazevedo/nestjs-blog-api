@@ -1,24 +1,19 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { hash } from 'bcrypt';
 import { omit } from 'lodash';
+import { AbstractEntity } from 'src/core/abstract-entity';
 import {
   AfterLoad,
   BeforeInsert,
   BeforeUpdate,
   Column,
-  CreateDateColumn,
   Entity,
   getConnection,
   Not,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class User extends AbstractEntity {
   @Column({ length: 200 })
   name: string;
 
@@ -27,12 +22,6 @@ export class User {
 
   @Column({ length: 500 })
   password: string;
-
-  @CreateDateColumn({ name: 'createdAt', type: 'datetime' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ name: 'updatedAt', type: 'datetime' })
-  updatedAt: Date;
 
   private currentPassword: string;
 

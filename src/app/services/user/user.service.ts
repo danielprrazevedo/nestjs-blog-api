@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { User } from 'src/app/models/database/entities/user/user.entity';
-import { userProvider } from 'src/app/models/database/entities/user/user.provider';
+import { User } from 'src/app/database/entities/user/user.entity';
+import { userProvider } from 'src/app/database/entities/user/user.provider';
 import { AbstractService } from 'src/core/abstract-service';
 import { Repository } from 'typeorm';
 
