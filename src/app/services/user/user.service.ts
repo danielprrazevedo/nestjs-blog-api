@@ -12,4 +12,12 @@ export class UserService extends AbstractService<User> {
   ) {
     super();
   }
+
+  async findByUsername(username: string) {
+    return await this.repository.findOne({
+      where: {
+        username: username,
+      },
+    });
+  }
 }
