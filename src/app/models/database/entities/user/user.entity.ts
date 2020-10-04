@@ -72,6 +72,6 @@ export class User {
   }
 
   toJSON() {
-    return omit(this, ['currentPassword']);
+    return omit(this, ['currentPassword', 'password']);
   }
 }
