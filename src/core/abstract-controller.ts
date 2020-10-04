@@ -26,8 +26,8 @@ export abstract class AbstractController<T> {
   }
 
   @Put(':id')
-  async put(@Param('id') id: number, @Body() user: Partial<T>) {
-    return await this.service.update(id, user);
+  async put(@Param('id') id: number, @Body() entity: Partial<T>) {
+    return await this.service.update(id, entity);
   }
 
   @Delete(':id')

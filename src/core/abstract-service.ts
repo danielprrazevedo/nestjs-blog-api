@@ -21,7 +21,7 @@ export abstract class AbstractService<T> {
   async update(id: number, entity: Partial<T>) {
     const e = await this.repository.findOne(id);
     Object.keys(entity).forEach(key => {
-      entity[key] = entity[key];
+      e[key] = entity[key];
     });
     return await this.repository.save(e);
   }
