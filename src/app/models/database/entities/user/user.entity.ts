@@ -1,5 +1,8 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { hash } from 'bcrypt';
+import { omit } from 'lodash';
 import {
+  AfterLoad,
   BeforeInsert,
   BeforeUpdate,
   Column,
@@ -31,6 +34,8 @@ export class User {
   @UpdateDateColumn({ name: 'updatedAt', type: 'datetime' })
   updatedAt: Date;
 
+  private currentPassword: string;
+
   @BeforeUpdate()
   @BeforeInsert()
   async validateUsername() {
@@ -51,5 +56,22 @@ export class User {
       );
     }
     return;
+  }
+
+  @AfterLoad()
+  clonePassword() {
+    this.currentPassword = this.password;
+  }
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPassword() {
+    if (this.currentPassword !== this.password) {
+      this.password = await hash(this.password, 10);
+    }
+  }
+
+  toJSON() {
+    return omit(this, ['currentPassword']);
   }
 }
