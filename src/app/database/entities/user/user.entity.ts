@@ -10,7 +10,9 @@ import {
   Entity,
   getConnection,
   Not,
+  OneToMany,
 } from 'typeorm';
+import { Post } from '../post/post.entity';
 
 @Entity()
 export class User extends AbstractEntity {
@@ -22,6 +24,12 @@ export class User extends AbstractEntity {
 
   @Column({ length: 500 })
   password: string;
+
+  @OneToMany(
+    () => Post,
+    post => post.user,
+  )
+  posts: Post[];
 
   private currentPassword: string;
 
