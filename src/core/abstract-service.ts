@@ -1,12 +1,12 @@
 import { DeepPartial, Repository } from 'typeorm';
 
 export abstract class AbstractService<T> {
-  protected repository: Repository<T>;
+  protected readonly repository: Repository<T>;
 
-  async read();
-  async read(id: string | number);
+  async read(): Promise<T[]>;
+  async read(id: string | number): Promise<T>;
 
-  async read(idOrQuery?: any) {
+  async read(idOrQuery?: any): Promise<T | T[]> {
     if (typeof idOrQuery === 'number' || typeof idOrQuery === 'string') {
       return await this.repository.findOne(idOrQuery);
     }
