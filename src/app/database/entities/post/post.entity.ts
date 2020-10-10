@@ -1,3 +1,4 @@
+import { IPost } from '@database/post';
 import { AbstractEntity } from 'src/core/abstract-entity';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { Comment } from '../comment/comment.entity';
@@ -5,7 +6,7 @@ import { File } from '../file/file.entity';
 import { User } from '../user/user.entity';
 
 @Entity()
-export class Post extends AbstractEntity {
+export class Post extends AbstractEntity implements IPost {
   @Column({ length: 256 })
   title: string;
 

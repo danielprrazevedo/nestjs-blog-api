@@ -1,6 +1,7 @@
+import { IBase } from '@database/base';
 import { CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 
-export abstract class AbstractEntity {
+export abstract class AbstractEntity implements IBase {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

@@ -1,3 +1,4 @@
+import { IUser } from '@database/user';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { hash } from 'bcrypt';
 import { omit } from 'lodash';
@@ -15,7 +16,7 @@ import {
 import { Post } from '../post/post.entity';
 
 @Entity()
-export class User extends AbstractEntity {
+export class User extends AbstractEntity implements IUser {
   @Column({ length: 200 })
   name: string;
 

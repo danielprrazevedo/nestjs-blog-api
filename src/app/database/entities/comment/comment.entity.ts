@@ -1,10 +1,11 @@
+import { IComment } from '@database/comment';
 import { AbstractEntity } from 'src/core/abstract-entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { Post } from '../post/post.entity';
 import { User } from '../user/user.entity';
 
 @Entity()
-export class Comment extends AbstractEntity {
+export class Comment extends AbstractEntity implements IComment {
   @Column({ length: 512 })
   text: string;
 

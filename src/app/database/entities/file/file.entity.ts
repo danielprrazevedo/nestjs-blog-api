@@ -2,7 +2,7 @@ import { AbstractEntity } from 'src/core/abstract-entity';
 import { Column, Entity } from 'typeorm';
 
 @Entity()
-export class File extends AbstractEntity {
+export class File extends AbstractEntity implements File {
   @Column({ length: 100 })
   name: string;
 
