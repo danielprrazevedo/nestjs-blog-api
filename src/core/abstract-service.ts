@@ -18,7 +18,7 @@ export abstract class AbstractService<T> {
     return await this.repository.save(e);
   }
 
-  async update(id: number, entity: Partial<T>) {
+  async update(id: string, entity: Partial<T>) {
     const e = await this.repository.findOne(id);
     Object.keys(entity).forEach(key => {
       e[key] = entity[key];
@@ -26,7 +26,7 @@ export abstract class AbstractService<T> {
     return await this.repository.save(e);
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     const entity = await this.repository.findOne(id);
     if (entity) {
       await this.repository.delete(id);
